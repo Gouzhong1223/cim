@@ -1,11 +1,7 @@
 package com.crossoverjie.cim.client.service.impl.command;
 
 import com.crossoverjie.cim.client.client.CIMClient;
-import com.crossoverjie.cim.client.service.EchoService;
-import com.crossoverjie.cim.client.service.InnerCommand;
-import com.crossoverjie.cim.client.service.MsgLogger;
-import com.crossoverjie.cim.client.service.RouteRequest;
-import com.crossoverjie.cim.client.service.ShutDownMsg;
+import com.crossoverjie.cim.client.service.*;
 import com.crossoverjie.cim.common.data.construct.RingBufferWheel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +24,7 @@ public class ShutDownCommand implements InnerCommand {
     private final static Logger LOGGER = LoggerFactory.getLogger(ShutDownCommand.class);
 
     @Autowired
-    private RouteRequest routeRequest ;
+    private RouteRequest routeRequest;
 
     @Autowired
     private CIMClient cimClient;
@@ -40,14 +36,14 @@ public class ShutDownCommand implements InnerCommand {
     private ThreadPoolExecutor callBackExecutor;
 
     @Autowired
-    private EchoService echoService ;
+    private EchoService echoService;
 
 
     @Autowired
-    private ShutDownMsg shutDownMsg ;
+    private ShutDownMsg shutDownMsg;
 
     @Autowired
-    private RingBufferWheel ringBufferWheel ;
+    private RingBufferWheel ringBufferWheel;
 
     @Override
     public void process(String msg) {

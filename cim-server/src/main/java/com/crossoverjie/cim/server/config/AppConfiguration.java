@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * Function:
  *
  * @author crossoverJie
- *         Date: 2018/8/24 01:43
+ * Date: 2018/8/24 01:43
  * @since JDK 1.8
  */
 @Component
@@ -26,7 +26,11 @@ public class AppConfiguration {
     private int cimServerPort;
 
     @Value("${cim.route.url}")
-    private String routeUrl ;
+    private String routeUrl;
+    @Value("${cim.heartbeat.time}")
+    private long heartBeatTime;
+    @Value("${app.zk.connect.timeout}")
+    private int zkConnectTimeout;
 
     public String getRouteUrl() {
         return routeUrl;
@@ -36,15 +40,9 @@ public class AppConfiguration {
         this.routeUrl = routeUrl;
     }
 
-    @Value("${cim.heartbeat.time}")
-    private long heartBeatTime ;
-    
-    @Value("${app.zk.connect.timeout}")
-    private int zkConnectTimeout;
-    
     public int getZkConnectTimeout() {
-		return zkConnectTimeout;
-	}
+        return zkConnectTimeout;
+    }
 
     public String getZkRoot() {
         return zkRoot;

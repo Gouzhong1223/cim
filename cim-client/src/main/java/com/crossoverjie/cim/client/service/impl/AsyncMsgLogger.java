@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  * Function:
  *
  * @author crossoverJie
- *         Date: 2019/1/6 15:26
+ * Date: 2019/1/6 15:26
  * @since JDK 1.8
  */
 @Service
@@ -53,24 +53,6 @@ public class AsyncMsgLogger implements MsgLogger {
             LOGGER.error("InterruptedException", e);
         }
     }
-
-    private class Worker extends Thread {
-
-
-        @Override
-        public void run() {
-            while (started) {
-                try {
-                    String msg = blockingQueue.take();
-                    writeLog(msg);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
-
-    }
-
 
     private void writeLog(String msg) {
 
@@ -112,7 +94,6 @@ public class AsyncMsgLogger implements MsgLogger {
         worker.start();
     }
 
-
     @Override
     public void stop() {
         started = false;
@@ -142,5 +123,22 @@ public class AsyncMsgLogger implements MsgLogger {
         }
 
         return sb.toString().replace(key, "\033[31;4m" + key + "\033[0m");
+    }
+
+    private class Worker extends Thread {
+
+
+        @Override
+        public void run() {
+            while (started) {
+                try {
+                    String msg = blockingQueue.take();
+                    writeLog(msg);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        }
+
     }
 }

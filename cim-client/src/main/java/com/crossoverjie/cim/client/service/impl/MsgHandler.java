@@ -2,11 +2,7 @@ package com.crossoverjie.cim.client.service.impl;
 
 import com.crossoverjie.cim.client.client.CIMClient;
 import com.crossoverjie.cim.client.config.AppConfiguration;
-import com.crossoverjie.cim.client.service.InnerCommand;
-import com.crossoverjie.cim.client.service.InnerCommandContext;
-import com.crossoverjie.cim.client.service.MsgHandle;
-import com.crossoverjie.cim.client.service.MsgLogger;
-import com.crossoverjie.cim.client.service.RouteRequest;
+import com.crossoverjie.cim.client.service.*;
 import com.crossoverjie.cim.client.vo.req.GroupReqVO;
 import com.crossoverjie.cim.client.vo.req.P2PReqVO;
 import com.crossoverjie.cim.common.util.StringUtil;
@@ -48,7 +44,7 @@ public class MsgHandler implements MsgHandle {
     private ClientInfo clientInfo;
 
     @Autowired
-    private InnerCommandContext innerCommandContext ;
+    private InnerCommandContext innerCommandContext;
 
     private boolean aiModel = false;
 
@@ -132,7 +128,7 @@ public class MsgHandler implements MsgHandle {
         if (msg.startsWith(":")) {
 
             InnerCommand instance = innerCommandContext.getInstance(msg);
-            instance.process(msg) ;
+            instance.process(msg);
 
             return true;
 
@@ -170,7 +166,7 @@ public class MsgHandler implements MsgHandle {
 
     @Override
     public void closeAIModel() {
-        aiModel = false ;
+        aiModel = false;
     }
 
 }
